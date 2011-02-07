@@ -12,11 +12,17 @@
 	<property name="jar.filename" value="geoip.jar"/>
 
 	<!-- chdir to scripts/ and run ./get_maxmind_geoip_api to download and extract needed files. -->
-	<target name="geoip">
+	<target name="geoip" depends="get-geoip-src">
 		<javac srcdir="scripts/GeoIPJava-1.2.3/source" debug="true" destdir="${build.dir}" includeantruntime="false"/>
 	</target>
 
-	<target name="compile" depends="geoip">
+	<target name="get-geoip-src">
+		<get src="http://geolite.maxmind.com/download/geoip/api/java/GeoIPJava-1.2.3.zip" dest="geoip.zip"/>
+		<unzip src="geoip.zip" dest="scripts"/>
+		<delete file="geoip.zip"/>
+	</target>
+
+	<target name="compile" depends="-link-lib-dir, geoip">
 		<javac srcdir="${src.dir}" debug="true" destdir="${build.dir}" includeantruntime="false">
 			<classpath>
 				<pathelement path="${linux.wowza.lib.dir}/wms-server.jar" />
