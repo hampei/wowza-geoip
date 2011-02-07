@@ -126,7 +126,7 @@ public class GeoIP extends ModuleBase
 						// validate ip
 						if (exceptType.equals("ip")) {
 							try {
-								if (netmask_lookup.ValidateIP(IPAddress, exceptValue)) {
+								if (IpAddressMatcher.validateIP(IPAddress, exceptValue)) {
 									logDebug("    > Validated IP ("+exceptValue+")");
 									allowPlayback = true;
 									break;

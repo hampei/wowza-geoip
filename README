@@ -7,3 +7,19 @@ geographic locations, based on Maxmind's GeoIP API.
 The locations you wish to limit are specified in a
 separate config xml file, which is reloaded on each
 change, so it doesn't require a Wowza server restart.
+
+
+install database
+================
+
+wget -N -q http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz  
+gunzip GeoIP.dat.gz
+mv GeoIP.dat /usr/share/GeoIP/GeoIP.dat
+
+
+updates
+=======
+
+2011-01-07 Hampei: 
+ - Added ipv6 support. 
+ - Removed support for 255.0.0.0 style netmasks

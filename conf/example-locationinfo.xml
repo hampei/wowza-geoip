@@ -9,7 +9,7 @@
 		<Except type="ip">10.0.0.0/8</Except>
 		<Except type="ip">172.16.0.0/12</Except>
 		<!-- IP exceptions: subnet -->
-		<Except type="ip">192.168.0.0/255.255.0.0</Except>
+		<Except type="ip">192.168.0.0/16</Except>
 		<!-- Except: country = http://www.maxmind.com/app/iso3166 -->
 		<Except type="country">SI</Except>
 	</Location>
