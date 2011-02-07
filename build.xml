@@ -22,6 +22,14 @@
 		<delete file="geoip.zip"/>
 	</target>
 
+  <target name="install-geoip-database">
+	  <get src="http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz" dest="GeoIP.dat.gz"/>
+		<gunzip src="GeoIP.dat.gz"/>
+		<delete file="GeoIP.dat.gz"/>
+		<mkdir dir="/usr/share/GeoIP"/>
+		<move file="GeoIP.dat" todir="/usr/share/GeoIP"/>
+	</target>
+
 	<target name="compile" depends="-link-lib-dir, geoip">
 		<javac srcdir="${src.dir}" debug="true" destdir="${build.dir}" includeantruntime="false">
 			<classpath>
