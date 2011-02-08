@@ -15,7 +15,8 @@
 		<javac srcdir="GeoIPJava-1.2.3/source" debug="true" destdir="${build.dir}" includeantruntime="false"/>
 	</target>
 
-	<target name="get-geoip-src">
+	<available property="geoip.files.exists" file="GeoIPJava-1.2.3"/>
+	<target name="get-geoip-src" unless="geoip.files.exists">
 		<get src="http://geolite.maxmind.com/download/geoip/api/java/GeoIPJava-1.2.3.zip" dest="geoip.zip"/>
 		<unzip src="geoip.zip" dest="."/>
 		<delete file="geoip.zip"/>
