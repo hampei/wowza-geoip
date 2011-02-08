@@ -35,6 +35,7 @@
 			<classpath>
 				<pathelement path="${linux.wowza.lib.dir}/wms-server.jar" />
 				<pathelement path="${linux.wowza.lib.dir}/log4j-1.2.15.jar" />
+				<pathelement path="${linux.wowza.lib.dir}/wms-httpstreamer-cupertinostreaming.jar" />
 			</classpath>
 			<compilerarg value="-Xlint:unchecked"/>
 		</javac>

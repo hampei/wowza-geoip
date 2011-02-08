@@ -32,6 +32,7 @@ import org.w3c.dom.*;
 // override play
 import com.wowza.wms.amf.*;
 import com.wowza.wms.request.*;
+import com.wowza.wms.httpstreamer.cupertinostreaming.httpstreamer.HTTPStreamerSessionCupertino;
 
 public class GeoIP extends ModuleBase
 {
@@ -245,6 +246,22 @@ public class GeoIP extends ModuleBase
 		geoip_lookup = new GeoIPLookupService(GeoIPDatabase);
 		if (!geoip_lookup.GetStatus()) {
 			getLogger().error("geoip.onAppStart: GeoIP LookupService - GeoIPDatabase problem!");
+		}
+	}
+
+    // code by marzipi and shamrock (taken from wowza forum 1978)
+	public void onHTTPCupertinoStreamingSessionCreate(HTTPStreamerSessionCupertino httpCupertinoStreamingSession)
+	{
+		String ClientIP = httpCupertinoStreamingSession.getIpAddress();
+		String streamName = httpCupertinoStreamingSession.getStreamName();
+
+		String[] streamNameSplit = streamName.split(":");
+		String realStreamName = streamNameSplit.length==1 ? streamNameSplit[0] : streamNameSplit[1];
+		logDebug("Real stream name "+realStreamName);
+		logDebug("IP source "+ClientIP);
+
+		if (!allowPlayback(realStreamName, ClientIP)) {
+			httpCupertinoStreamingSession.rejectSession();
 		}
 	}
 }
