@@ -46,8 +46,6 @@ public class GeoIP extends ModuleBase
 
 	private GeoIPLookupService geoip_lookup;
 
-	private static NetMaskLookupService netmask_lookup;
-
 	private boolean streamShutdown = true;
 	private String streamRemap = "";
 
@@ -241,9 +239,6 @@ public class GeoIP extends ModuleBase
 				streamShutdown = true;
 			}
 		}
-
-		// Spawn netmask lookup service
-		netmask_lookup = new NetMaskLookupService();
 
 		// Configure our GeoIP lookup service
 		String GeoIPDatabase = ServerSideParameters.getPropertyStr("GeoIPDatabase","/usr/share/GeoIP/GeoIP.dat");
